@@ -1,0 +1,4 @@
+# Packaging-time-generated; a consuming app's own script (e.g. SUD Workbench's
+# app/mac/sf_symbols.py via packaging/render_sf_symbols.py) writes this from real SF Symbols on
+# the user's own machine at build time — see macos-kit/README.md and THIRD-PARTY-NOTICES.md.
+macos-kit/mac-tokens-sf.generated.css
