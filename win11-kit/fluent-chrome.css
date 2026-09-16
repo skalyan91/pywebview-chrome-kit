@@ -601,6 +601,14 @@
   .drawer-group-h{font-size:var(--fs-caption); line-height:var(--lh-caption); font-weight:var(--fw-semibold);
     letter-spacing:normal; text-transform:none; color:var(--menu-hdr); margin:2px 4px 0; padding:6px 11px 2px; border-top:none}
   .drawer-pop .drawer-group-h:first-child{padding-top:4px}
+  /* PIPELINE-DRAWER-ONLY, mirroring the macOS kit's own rule (base-chrome.css) — see its comment for
+     why this is scoped to `#pipePop` rather than the bare class: the Show/Hide drawer's headings share
+     `.drawer-group-h` and are not wired to do anything on click. `cursor:default`, not `pointer`, to
+     match this kit's own convention for every other clickable row (.chk, .drawer-btn, .gm-editbtn all
+     use `default` — WinUI does not swap the cursor glyph for a hand on hover). */
+  #pipePop .drawer-group-h{cursor:default}
+  #pipePop .drawer-group-h:hover{color:var(--label-primary)}   /* muted --menu-hdr → --label-primary is this kit's own step from "heading" to "focused text"; matches how .drawer-btn already darkens on hover */
+  .drawer-pop > label.chk.pipe-all{font-weight:var(--fw-semibold)}   /* the whole-drawer "All" row (index.html) — bolded like a heading so it doesn't read as an eleventh arm; a plain label.chk otherwise, so it already gets this kit's 32px row/hover/tiling for free */
   /* ── THE TWO RAISING DROP ZONES (js/diagram/diagram-edit.js) ──────────────────────────────────────────────
      Raised over a valid edge while a predicate is being dragged onto it, because the gesture is ambiguous by
      nature: the same drop can mean "this argument is my raised subject" or "…my raised object", and nothing in

@@ -612,6 +612,18 @@
   .drawer-pop > label.chk + label.chk{margin-top:-10px}   /* cancels the pop's own 10px gap between CONSECUTIVE toggles so they tile like a Form Group's rows; a heading or separator between two of them keeps its gap */
   .drawer-group-h{font-size:9.5px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); margin:0 2px 1px; padding-top:10px; border-top:.5px solid var(--menu-sep)}   /* item 3: subtle group heading + separator in the drawer */   /* THE RULE IS CENTRED IN ITS OWN GAP, on request. It sat 16px below the last checkbox of the group above and 6px above its own heading text — measured, and the asymmetry is not obvious from the values, because the space ABOVE is the .drawer-pop's own 10px flex `gap` PLUS this margin-top, while the space BELOW is the padding-top alone. Dropping margin-top to 0 leaves the 10px gap, and 10px of padding matches it: 10 above, 10.5 below. Change the pop's gap and this padding has to follow it. Ink is --menu-sep, the shared in-surface separator (was --hairline, which light mode raised to 90% black — a black rule across a translucent menu). */
   .drawer-pop .drawer-group-h:first-child{margin-top:0; padding-top:0; border-top:none}
+  /* PIPELINE-DRAWER-ONLY: a category heading here also toggles every ENABLED arm underneath it
+     (js/ui/wiring.js). Scoped to `#pipePop` rather than the bare `.drawer-group-h` class, which the
+     Show/Hide drawer's "Annotations"/"Stemma"/"Glosses" headings share (index.html) — those are not
+     wired to do anything on click, and a pointer cursor on them would promise a gesture nothing
+     answers. `#pipePop`'s own "All" row (label.chk.pipe-all, below) is the whole-drawer counterpart. */
+  #pipePop .drawer-group-h{cursor:pointer}
+  #pipePop .drawer-group-h:hover{color:var(--text-2)}   /* muted → text-2 is this kit's existing step for "hovering something clickable" (see .tier-rm, .findbar button); no new token */
+  /* THE "ALL" ROW is a plain `label.chk` (index.html) so it inherits every row rule above for free —
+     same 24px height, same hover fill, same tiling — and does NOT grow the popover width, since "All"
+     is shorter than the arm labels that already set it. Bolded only, to read as the drawer's own
+     control rather than an eleventh arm. */
+  .drawer-pop > label.chk.pipe-all{font-weight:600}
   /* ── THE TWO RAISING DROP ZONES (js/diagram/diagram-edit.js) ──────────────────────────────────────────────
      Raised over a valid edge while a predicate is being dragged onto it, because the gesture is ambiguous by
      nature: the same drop can mean "this argument is my raised subject" or "…my raised object", and nothing in
